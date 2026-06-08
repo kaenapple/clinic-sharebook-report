@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>シェアブック報告書</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="reportSheet" class="sheet" aria-label="シェアブック報告書">
+        <header class="sheet-title">
+          <div class="brand"><strong>Build's</strong><span>Building Cleaning</span></div>
+          <div class="title-line"></div>
+          <h1>シェアブック</h1>
+          <div class="title-line"></div>
+        </header>
+        <div class="clinic-name">あらおクリニック青葉台皮膚科・形成外科</div>
+        <section class="top-fields">
+          <label><input name="month" inputmode="numeric">月</label>
+          <label><input name="day" inputmode="numeric">日</label>
+          <label><input name="weekday">曜日</label>
+          <label class="time-field">作業時間 <input name="startTime" type="time"> ～ <input name="endTime" type="time"></label>
+        </section>
+        <section class="work-tables">
+          <table class="work-table"><thead><tr><th>階</th><th>頻度</th><th>チェック</th><th>場所</th><th>作業内容</th></tr></thead><tbody id="leftRows"></tbody></table>
+          <table class="work-table"><thead><tr><th>階</th><th>頻度</th><th>チェック</th><th>場所</th><th>作業内容</th></tr></thead><tbody id="rightRows"></tbody></table>
+        </section>
+        <p class="note">※ご契約以外の箇所も記載されている場合がございます。</p>
+        <section class="lined-box">
+          <h2>担当スタッフからのご報告</h2>
+          <textarea name="staffReport" rows="6"></textarea>
+        </section>
+        <section class="lined-box customer">
+          <h2>お客様からのご指示、ご依頼がありましたら何なりとお申し付け下さい。</h2>
+          <p>コメントを頂いた際は、ご担当者様のお名前を頂戴しております。</p>
+          <textarea name="customerComment" rows="5"></textarea>
+        </section>
+        <footer class="contact-line">
+          <strong>FC本部：本部03-6757-6081</strong>
+          <strong>FC店連絡先：</strong>
+          <input name="fcContact">
+        </footer>
+      </section>
+      <nav class="action-bar" aria-label="操作">
+        <button type="button" id="checkAll">全てチェック</button>
+        <button type="button" id="clearChecks" class="secondary">チェック解除</button>
+        <button type="button" id="previewPdf" class="secondary">PDF確認</button>
+        <button type="button" id="sendPdf">PDFを指定先へ送信</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </nav>
+    </main>
+  </body>
+</html>
