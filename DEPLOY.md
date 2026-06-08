@@ -19,6 +19,8 @@ RenderはGitHubリポジトリを接続して、無料のWebサービスとし�
 APP_PASSWORD=1234
 REPORT_TO_EMAIL=info@araoclinic.net
 REPORT_FROM_EMAIL=info@araoclinic.net
+REPORT_FROM_NAME=シェアブック報告書
+BREVO_API_KEY=Brevoで発行したAPIキー
 SMTP_HOST=sv13154.xserver.jp
 SMTP_PORT=465
 SMTP_SECURE=true
@@ -29,6 +31,8 @@ SMTP_GREETING_TIMEOUT=30000
 SMTP_SOCKET_TIMEOUT=60000
 ```
 
+`BREVO_API_KEY` が設定されている場合、アプリはSMTPではなくBrevo APIで送信します。RenderでSMTPの `Connection timeout` が出る場合は、このBrevo API方式を使ってください。
+
 送信先メールアドレスを後から増やす場合は、Render の Environment Variables で `REPORT_TO_EMAIL` を変更します。
 
 ```env
@@ -37,14 +41,18 @@ REPORT_TO_EMAIL=info@araoclinic.net,second@example.com
 
 変更後、Renderで再デプロイまたはサービス再起動を行うと反映されます。
 
+## Brevo APIキー
+
+BrevoでTransactional Emailを有効にし、API keyを発行します。送信元 `info@araoclinic.net` はBrevo側で送信元またはドメイン認証が必要になる場合があります。
+
+Brevo APIはPDF添付をbase64で送れるため、この報告書PDF送信に使えます。
+
 ## タイムアウト時
 
-Renderで `Connection timeout` が出る場合は、まず Environment Variables が `SMTP_PORT=465`、`SMTP_SECURE=true` になっているか確認してください。
-
-それでもタイムアウトする場合、Render無料枠側でSMTP通信が制限されている可能性があります。その場合は、SendGrid、Brevo、MailgunなどのHTTP API型メール送信サービスに切り替えると回避しやすいです。
+Renderで `Connection timeout` が出る場合は、SMTP通信がRender無料枠側で制限されている可能性があります。`BREVO_API_KEY` を設定し、HTTPSのBrevo API送信へ切り替えてください。
 
 ## 注意
 
 - `.env` は公開しないでください。ローカル用の秘密設定です。
-- サーバーに設置する場合、メールパスワードは必ず各サービスの Environment Variables に入力します。
+- サーバーに設置する場合、メールパスワードやBrevo APIキーは必ず各サービスの Environment Variables に入力します。
 - 公開URLはパスワード `APP_PASSWORD` で保護されます。現在の初期値は `1234` です。
