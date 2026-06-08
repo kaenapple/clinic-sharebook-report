@@ -98,27 +98,14 @@ async function buildPdf() {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-  const imageWidth = pageWidth;
-  const imageHeight = (canvas.height * imageWidth) / canvas.width;
+  const fitScale = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+  const imageWidth = canvas.width * fitScale;
+  const imageHeight = canvas.height * fitScale;
+  const imageX = (pageWidth - imageWidth) / 2;
+  const imageY = (pageHeight - imageHeight) / 2;
   const image = canvas.toDataURL("image/jpeg", 0.98);
 
-  if (imageHeight <= pageHeight) {
-    doc.addImage(image, "JPEG", 0, 0, imageWidth, imageHeight);
-    return doc;
-  }
-
-  let y = 0;
-  let remaining = imageHeight;
-  doc.addImage(image, "JPEG", 0, y, imageWidth, imageHeight);
-  remaining -= pageHeight;
-
-  while (remaining > 0) {
-    y -= pageHeight;
-    doc.addPage();
-    doc.addImage(image, "JPEG", 0, y, imageWidth, imageHeight);
-    remaining -= pageHeight;
-  }
-
+  doc.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
   return doc;
 }
 
