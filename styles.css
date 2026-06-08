@@ -20,28 +20,29 @@ body {
 .app-shell { display: grid; justify-items: center; gap: 18px; padding: 18px 18px 92px; }
 .sheet {
   width: min(920px, 100%);
-  min-height: 1280px;
-  padding: 100px 68px 70px;
+  aspect-ratio: 210 / 297;
+  min-height: auto;
+  padding: 7.5% 7.4% 5.2%;
   background: var(--paper);
   border: 1px solid #d0d5dd;
   box-shadow: 0 12px 34px rgba(16, 24, 40, 0.14);
 }
-.sheet-title { display: grid; grid-template-columns: 112px 1fr auto 1fr; align-items: end; gap: 12px; margin-bottom: 10px; }
+.sheet-title { display: grid; grid-template-columns: 112px 1fr auto 1fr; align-items: end; gap: 12px; margin-bottom: 8px; }
 .brand { display: grid; align-content: end; color: #7a828d; line-height: 1; }
-.brand strong { font-size: 32px; letter-spacing: 0; }
+.brand strong { font-size: 30px; letter-spacing: 0; }
 .brand span { width: max-content; margin-top: 2px; padding: 2px 4px; background: #9aa1aa; color: #fff; font-size: 10px; font-weight: 700; }
 .title-line { height: 5px; margin-bottom: 10px; border-top: 3px solid #9da3ad; border-bottom: 1px solid #c5cad1; }
-h1 { margin: 0; color: #6a6f78; font-size: 32px; line-height: 1; letter-spacing: 0; text-shadow: 1px 1px 0 #fff, 2px 2px 0 #333; white-space: nowrap; }
-.clinic-name { width: 55%; margin: 0 0 14px; border-bottom: 2px solid var(--line); text-align: center; font-size: 19px; font-weight: 900; line-height: 1.7; }
-.top-fields { display: grid; grid-template-columns: 70px 70px 90px 1fr; align-items: center; gap: 18px; margin: 0 0 10px; padding-left: 60px; font-weight: 800; }
+h1 { margin: 0; color: #6a6f78; font-size: 31px; line-height: 1; letter-spacing: 0; text-shadow: 1px 1px 0 #fff, 2px 2px 0 #333; white-space: nowrap; }
+.clinic-name { width: 55%; margin: 0 0 10px; border-bottom: 2px solid var(--line); text-align: center; font-size: 19px; font-weight: 900; line-height: 1.7; }
+.top-fields { display: grid; grid-template-columns: 70px 70px 90px 1fr; align-items: center; gap: 18px; margin: 0 0 8px; padding-left: 60px; font-weight: 800; }
 .top-fields label { display: flex; align-items: center; gap: 6px; }
 .top-fields input, .contact-line input { min-width: 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; font: inherit; font-weight: 800; text-align: center; }
 .top-fields input { width: 58px; }
 .top-fields .time-field { justify-content: flex-end; gap: 12px; }
 .top-fields .time-field input { width: 112px; }
 .work-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-.work-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 13px; font-weight: 800; }
-.work-table th, .work-table td { border: 1px solid var(--line); height: 26px; padding: 2px 4px; text-align: center; vertical-align: middle; }
+.work-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 12px; font-weight: 800; }
+.work-table th, .work-table td { border: 1px solid var(--line); height: 23px; padding: 2px 4px; text-align: center; vertical-align: middle; }
 .work-table th { background: var(--header); font-size: 12px; }
 .work-table th:nth-child(1), .work-table td.floor { width: 38px; }
 .work-table th:nth-child(2), .work-table td.freq { width: 38px; }
@@ -49,9 +50,9 @@ h1 { margin: 0; color: #6a6f78; font-size: 32px; line-height: 1; letter-spacing:
 .work-table th:nth-child(4), .work-table td.place { width: 76px; }
 .work-table td.floor { font-size: 16px; }
 .work-table input[type="checkbox"] { width: 19px; height: 19px; accent-color: var(--ink); }
-.note { margin: 14px 0 6px; color: #8a8f98; font-size: 12px; font-weight: 700; }
-.lined-box { border: 1px solid var(--line); margin-top: 10px; }
-.lined-box h2, .lined-box p { margin: 0; min-height: 25px; padding: 4px 6px; border-bottom: 1px solid var(--line); background: var(--header); font-size: 13px; font-weight: 900; line-height: 1.35; }
+.note { margin: 10px 0 5px; color: #8a8f98; font-size: 12px; font-weight: 700; }
+.lined-box { border: 1px solid var(--line); margin-top: 8px; }
+.lined-box h2, .lined-box p { margin: 0; min-height: 23px; padding: 4px 6px; border-bottom: 1px solid var(--line); background: var(--header); font-size: 13px; font-weight: 900; line-height: 1.35; }
 .lined-box p { background: #fff; }
 .lined-box textarea {
   display: block;
@@ -60,14 +61,14 @@ h1 { margin: 0; color: #6a6f78; font-size: 32px; line-height: 1; letter-spacing:
   border-radius: 0;
   resize: vertical;
   padding: 7px 8px;
-  background: repeating-linear-gradient(to bottom, transparent 0, transparent 25px, var(--soft-line) 26px);
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 23px, var(--soft-line) 24px);
   color: var(--ink);
   font: inherit;
-  font-size: 15px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 24px;
 }
-.customer textarea { min-height: 104px; }
-.contact-line { display: flex; align-items: center; gap: 26px; margin-top: 8px; padding-left: 4px; font-size: 22px; font-weight: 900; }
+.customer textarea { min-height: 90px; }
+.contact-line { display: flex; align-items: center; gap: 26px; margin-top: 8px; padding-left: 4px; font-size: 20px; font-weight: 900; }
 .contact-line input { flex: 1; text-align: left; font-size: 20px; }
 .action-bar {
   position: fixed;
