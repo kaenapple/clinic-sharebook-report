@@ -20,10 +20,13 @@ APP_PASSWORD=1234
 REPORT_TO_EMAIL=info@araoclinic.net
 REPORT_FROM_EMAIL=info@araoclinic.net
 SMTP_HOST=sv13154.xserver.jp
-SMTP_PORT=587
-SMTP_SECURE=false
+SMTP_PORT=465
+SMTP_SECURE=true
 SMTP_USER=info@araoclinic.net
 SMTP_PASS=メールパスワード
+SMTP_CONNECTION_TIMEOUT=30000
+SMTP_GREETING_TIMEOUT=30000
+SMTP_SOCKET_TIMEOUT=60000
 ```
 
 送信先メールアドレスを後から増やす場合は、Render の Environment Variables で `REPORT_TO_EMAIL` を変更します。
@@ -33,6 +36,12 @@ REPORT_TO_EMAIL=info@araoclinic.net,second@example.com
 ```
 
 変更後、Renderで再デプロイまたはサービス再起動を行うと反映されます。
+
+## タイムアウト時
+
+Renderで `Connection timeout` が出る場合は、まず Environment Variables が `SMTP_PORT=465`、`SMTP_SECURE=true` になっているか確認してください。
+
+それでもタイムアウトする場合、Render無料枠側でSMTP通信が制限されている可能性があります。その場合は、SendGrid、Brevo、MailgunなどのHTTP API型メール送信サービスに切り替えると回避しやすいです。
 
 ## 注意
 
