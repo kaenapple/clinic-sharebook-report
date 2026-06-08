@@ -90,6 +90,9 @@ app.post("/api/send-report", upload.single("pdf"), async (req, res) => {
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT || 587),
       secure: String(process.env.SMTP_SECURE).toLowerCase() === "true",
+      connectionTimeout: Number(process.env.SMTP_CONNECTION_TIMEOUT || 30000),
+      greetingTimeout: Number(process.env.SMTP_GREETING_TIMEOUT || 30000),
+      socketTimeout: Number(process.env.SMTP_SOCKET_TIMEOUT || 60000),
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS
@@ -120,7 +123,17 @@ app.post("/api/send-report", upload.single("pdf"), async (req, res) => {
 
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message || "送信に失敗しました。" });
+    const message = error.message || "送信に失敗しました。";
+    const isTimeout =
+      error.code === "ETIMEDOUT" ||
+      error.code === "ESOCKET" ||
+      /timeout/i.test(message);
+
+    res.status(500).json({
+      error: isTimeout
+        ? "SMTPサーバーへの接続がタイムアウトしました。Render側のSMTP制限、またはSMTP_PORT/SMTP_SECURE設定を確認してください。Xserverでは 465 / SSL(true) をお試しください。"
+        : message
+    });
   }
 });
 
