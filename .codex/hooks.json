@@ -1,0 +1,19 @@
+{
+  "description": "AI Harness project hooks (shared with Claude Code).",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .harness/hooks/harness_session_start.py",
+            "timeout": 3,
+            "statusMessage": "Loading harness state",
+            "additionalContextLimit": 6000
+          }
+        ]
+      }
+    ]
+  }
+}
