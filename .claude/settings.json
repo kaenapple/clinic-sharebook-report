@@ -3,23 +3,22 @@
   "hooks": {
     "SessionStart": [
       {
-        "matcher": "startup|resume",
+        "matcher": "startup|resume|compact",
         "hooks": [
           {
             "type": "command",
             "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh"
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.harness/hooks/harness_session_start.py",
+            "timeout": 10
           }
         ]
       }
     ]
   },
   "permissions": {
-    "allow": [
-      "Bash(npm install)",
-      "Bash(npm start)",
-      "Bash(npm run check)",
-      "Bash(node --check:*)"
-    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.production)"

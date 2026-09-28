@@ -6,7 +6,7 @@ cd "${CLAUDE_PROJECT_DIR:-$(dirname "$0")/../..}"
 
 # 依存関係（node_modules がない、または package.json が更新された場合のみ）
 if [ ! -d node_modules ] || [ package.json -nt node_modules ]; then
-  npm install --no-audit --no-fund
+  npm install --no-audit --no-fund >&2
 fi
 
 # クラウド環境では .env が存在しないため、ダミー値のサンプルから作成する。
